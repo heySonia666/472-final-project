@@ -1,7 +1,7 @@
 ---
 title: "Assignment Final"
 author: "Ming Mo"
-date: "2023"
+date: "01.09.2023"
 output: html_document
 ---
 
@@ -25,7 +25,7 @@ This research aims to address the characteristics and factors that differ betwee
 
 Data: 
 Since economic issues and health and welfare issues do not have fixed definitions in the provided database, this project obtains the data of these two parts in the following ways:
-As the answering party of the question has a clear affiliation with the organization, it can “backinfer” the information of the asking party from the economic, health and welfare related organizations. The institution name can be seen below in the code. 
+As the answering party of the question has a clear affiliation with the organization, it can “back infer” the information of the asking party from the economic, health and welfare related organizations. The institution name can be seen below in the code. 
 
 Then the relevant data is crawled from the API of Oral and Written Questions, including a series of information such as the ID number of the MPs who asked the question. When climbing, the parameters were set respectively, including setting the house as the House of Commons in written questions, setting the number of obtained to 5000 automatically in the system, expanding the information of MPs, setting the number of obtained in oral questions, etc. Project further extracts the ID number of MPs in the above obtained information, and further crawled into the Member API to obtain expanded data about MPs.
 
@@ -247,8 +247,6 @@ A.Gender
 library(ggplot2)
 library(dplyr)
 
-# Assuming emembers_df and hmembers_df are your data frames and they have been read correctly.
-
 # Combine the data frames first
 combined_df <- bind_rows(
   emembers_df %>% mutate(Group = 'emembers'),
@@ -272,7 +270,7 @@ ggplot(gender_prop, aes(x = gender, y = Proportion, fill = Group)) +
         plot.title = element_text(hjust = 0.5)) # Center the title
 ```
 
-Observing the question-percentage in specifc gender rather than gender-specific percentages in different questions is becuase that male and female MPs do not have the same number of people, as the data from House of Common Library shows that women make up 31% of parliamentarians (2022).
+Observing the question-percentage in specific gender rather than gender-specific percentages in different questions is because that male and female MPs do not have the same number of people, as the data from House of Common Library shows that women make up 31% of parliamentarians (2022).
 
 
 Table above reports male MPs are more concerned with economic issues, as opposed to welfare issues, while female MPs are slightly more concerned with health. This implies that the questioners on health and environmental issues, as well as the questioners on economic issues, are characterized by gender differences.
