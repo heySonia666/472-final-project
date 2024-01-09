@@ -15,6 +15,7 @@ knitr::opts_chunk$set(echo = FALSE) # actually set the global chunk options.
 ```
 Option 2
 
+My public repository can be found on https://github.com/heySonia666/472-final-project.git
 
 Introduction:
 
@@ -269,16 +270,6 @@ ggplot(gender_prop, aes(x = gender, y = Proportion, fill = Group)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 0, vjust = 0.5),  # Ensure x-axis labels are straight
         plot.title = element_text(hjust = 0.5)) # Center the title
-
-# Display the plot
-print(ggplot(gender_prop, aes(x = gender, y = Proportion, fill = Group)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  scale_y_continuous(labels = scales::percent_format()) +
-  labs(title = "Gender Preference in Question Asking", x = 'Gender', y = 'Proportion', fill = 'Group') +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 0, vjust = 0.5),  # Ensure x-axis labels are straight
-        plot.title = element_text(hjust = 0.5))) # Center the title
-
 ```
 
 Observing the question-percentage in specifc gender rather than gender-specific percentages in different questions is becuase that male and female MPs do not have the same number of people, as the data from House of Common Library shows that women make up 31% of parliamentarians (2022).
@@ -316,18 +307,9 @@ ggplot(party_prop, aes(x = Party, y = Proportion, fill = Group)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5),  # Rotate x-axis labels for Party
         plot.title = element_text(hjust = 0.5)) # Center the title
-
-# Display the plot
-print(ggplot(party_prop, aes(x = Party, y = Proportion, fill = Group)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  scale_y_continuous(labels = scales::percent_format()) +
-  labs(title = "Party Preference in Question Asking", x = 'Party', y = 'Proportion', fill = 'Group') +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5),  # Rotate x-axis labels for Party
-        plot.title = element_text(hjust = 0.5))) # Center the title
 ```
 
-1-Alliance, 4-Conservative, 6-Crossbench, 7-Democratic Unionist Party, 8-Independent, 15-Labour, 17-Liberal Democrat, 22-Plaid Cymru, 29-Scottish National Party, 31-Social Democratic & Labour Party, 38-Ulster Unionist Party, 44-Green Party, 49-Non-affiliated, 1004-The Independent Group for Change, 1034-Alba Party.
+Notes: 1-Alliance, 4-Conservative, 6-Crossbench, 7-Democratic Unionist Party, 8-Independent, 15-Labour, 17-Liberal Democrat, 22-Plaid Cymru, 29-Scottish National Party, 31-Social Democratic & Labour Party, 38-Ulster Unionist Party, 44-Green Party, 49-Non-affiliated, 1004-The Independent Group for Change, 1034-Alba Party.
 
 
 
@@ -366,19 +348,21 @@ yearly_counts <- yearly_counts %>%
   mutate(Proportion = n / sum(n)) %>%
   ungroup()
 
-# Plotting the data with an annotation for the year 2016 at the bottom on the x-axis
+# Plotting the data with a centered title
 line_plot <- ggplot(yearly_counts, aes(x = Year, y = Proportion, group = Group, color = Group)) +
   geom_line() +
   geom_point() + # Add points to the line graph
   geom_vline(xintercept = 2016, linetype = "dashed", color = "black") +
   annotate("text", x = 2016, y = 0, label = "2016", vjust = 1, color = "black", angle = 0) +
   scale_y_continuous(labels = scales::percent_format()) +
-  labs(x = 'Year', y = 'Proportion of Members', color = 'Group') +
+  labs(title = "Time Period in Question Asking", x = 'Year', y = 'Proportion of Members', color = 'Group') +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) # Tilt the x-axis labels
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1),  # Tilt the x-axis labels
+        plot.title = element_text(hjust = 0.5)) # Center the title
 
 # Display the plot
 print(line_plot)
+
 ```
 
 Table above reports, taking the United Kingdom European Union membership referendum of 2016 as a dividing line, prior to 2016, health and welfare concerns were relatively high over the decade 2005-2016, while overall questions on economic issues showed a clear upward trend after 2016, albeit with a fall back in the current year. MPs' questions on the economy and health are influenced by the political and socio issues changes following the referendum.
@@ -435,8 +419,6 @@ female_plot <- ggplot(combined_female_melted, aes(x = Party, y = value, fill = v
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         plot.title = element_text(size = 10))
 
-# Execute the plot for females
-print(female_plot)
 
 # Filter for male members after 2016 and ensure Party is treated as a factor
 emembers_male <- emembers_df %>% filter(gender == "M" & Period == 'After 2016') %>% mutate(Party = as.factor(Party))
@@ -464,9 +446,6 @@ male_plot <- ggplot(combined_male_melted, aes(x = Party, y = value, fill = varia
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         plot.title = element_text(size = 10))
 
-# Execute the plot for males
-print(male_plot)
-
 # Filter for female members before 2016 and ensure Party is treated as a factor
 emembers_female_before <- emembers_df %>% filter(gender == "F" & Period == 'Before 2016') %>% mutate(Party = as.factor(Party))
 hmembers_female_before <- hmembers_df %>% filter(gender == "F" & Period == 'Before 2016') %>% mutate(Party = as.factor(Party))
@@ -493,8 +472,6 @@ female_plot_before <- ggplot(combined_female_melted_before, aes(x = Party, y = v
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         plot.title = element_text(size = 10))
 
-# Execute the plot for females before 2016
-print(female_plot_before)
 
 # Filter for male members before 2016 and ensure Party is treated as a factor
 emembers_male_before <- emembers_df %>% filter(gender == "M" & Period == 'Before 2016') %>% mutate(Party = as.factor(Party))
@@ -522,9 +499,6 @@ male_plot_before <- ggplot(combined_male_melted_before, aes(x = Party, y = value
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         plot.title = element_text(size = 10))
 
-# Execute the plot for males before 2016
-print(male_plot_before)
-
 
 library(patchwork)
 
@@ -544,7 +518,11 @@ Conclusion:
 MPs asking about economic issues and health and welfare issues show certain differences in gender, party, and era background, where the details are shown in the above. However, it needs to be acknowledged that the above results may have certain biases, such as uneven party seats. This loophole needs to be filled in subsequent research.
 
 
+Words:738
+
+
 Bibliography (exclude from words limitation):
+
 Crowe, E. (1986). The web of authority: Party loyalty and social control in the British House of Commons. Legislative Studies Quarterly, 161-185.
 
 Raymond, C. D. (2017). Voting Behaviour on Free Votes: Simply a Matter of Preferences?. Parliamentary Affairs, 70(3), 489-506.
