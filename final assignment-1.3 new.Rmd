@@ -1,6 +1,6 @@
 ---
 title: "Assignment Final"
-author: "Ming Mo"
+author:
 date: "01.09.2023"
 output: html_document
 ---
