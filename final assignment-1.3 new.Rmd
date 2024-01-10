@@ -242,7 +242,9 @@ print(hmembers_df)
 Analysis:
 
 
-A.Gender
+Gender:
+
+
 ```{r,echo=FALSE,message=FALSE}
 library(ggplot2)
 library(dplyr)
@@ -276,7 +278,9 @@ Observing the question-percentage in specific gender rather than gender-specific
 Table above reports male MPs are more concerned with economic issues, as opposed to welfare issues, while female MPs are slightly more concerned with health. This implies that the questioners on health and environmental issues, as well as the questioners on economic issues, are characterized by gender differences.
 
 
-Party：
+Party:
+
+
 ```{r,echo=FALSE,message=FALSE}
 library(ggplot2)
 library(dplyr)
@@ -316,6 +320,8 @@ It needs to acknowledged that the presentation of the above proportions may be i
 
 
 Special time period:
+
+
 ```{r,echo=FALSE,message=FALSE}
 library(ggplot2)
 library(dplyr)
@@ -368,6 +374,8 @@ Table above reports, taking the United Kingdom European Union membership referen
 
 
 Combined analysis:
+
+
 ```{r,echo=FALSE,message=FALSE}
 library(ggplot2)
 library(dplyr)
